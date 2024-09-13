@@ -1,0 +1,17 @@
+.nav{
+display: flex;
+gap:20px;
+   
+}
+.link{
+    font-size: 40px;
+}
+.active{
+    
+    color: red;
+    
+}
+hr{
+    color: gray;
+width: 100%;
+}
