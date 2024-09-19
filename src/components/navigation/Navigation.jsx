@@ -12,9 +12,9 @@ import { NavLink } from 'react-router-dom'
             <NavLink className={({ isActive }) => clsx(css.link, isActive && css.active)}
             to="/Movies">Movies</NavLink>
             
-        
+      
     </nav>
-    <hr />
+      <hr />
     </header>
   )
 }
