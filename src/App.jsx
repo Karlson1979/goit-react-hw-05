@@ -7,7 +7,7 @@ import HomePage from './pages/homePage/HomePage'
 import  MoviesPage  from './pages/moviesPage/MoviesPage';
 import { MovieCast } from './components/movieCast/MovieCast';
 import { MovieRewiews } from './components/movieReviews/MovieRewiews';
-import { MovieDetailsPage } from './pages/movieDetailsPage/MovieDetailsPage';
+import  MovieDetailsPage  from './pages/movieDetailsPage/MovieDetailsPage';
 
 function App() {
  

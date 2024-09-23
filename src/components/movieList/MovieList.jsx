@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Loader from "../loader/Loader"; 
+import { Link } from "react-router-dom";
 
 
 const MovieList = () => {
@@ -20,14 +21,18 @@ const MovieList = () => {
       try {
         const response = await axios.get(url, options);
         setTrendingMovies(response.data.results); 
+       
       } catch (error) {
         console.error('Error fetching trending movies:', error);
       } finally {
         setLoading(false); 
+        
       }
+      
     };
-
+    
     fetchMovies();
+   
   }, []); 
 
   
@@ -41,7 +46,11 @@ const MovieList = () => {
       {trendingMovies.length > 0 ? (
         <ul>
           {trendingMovies.map((movie) => (
-            <li key={movie.id}>{movie.title}</li>
+            
+            <li key={movie.id}>
+            <Link to={`/movies/${movie.id}`}>{movie.title}</Link>
+            </li>
+       
           ))}
         </ul>
       ) : (
@@ -49,6 +58,7 @@ const MovieList = () => {
       )}
     </div>
   )
+  
       }
 
       export default MovieList
