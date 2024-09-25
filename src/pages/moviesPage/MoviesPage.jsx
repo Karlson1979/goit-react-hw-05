@@ -77,7 +77,9 @@ const MoviesPage = () => {
                                         width="100"
                                     />
                                 ) : (
+                                    
                                     <p>No poster available</p>
+                                    
                                 )}
                             </li>
                         ))}
