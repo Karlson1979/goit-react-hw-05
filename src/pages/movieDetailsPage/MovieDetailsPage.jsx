@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import {
   useParams,
   Link,
@@ -7,8 +7,7 @@ import {
   useLocation,
 } from "react-router-dom";
 import axios from "axios";
-import Loader from "../../components/loader/Loader"; //
-import Navigation from "../../components/navigation/Navigation";
+import Loader from "../../components/loader/Loader";
 
 const MovieDetailsPage = () => {
   const { movieId } = useParams();
@@ -16,7 +15,9 @@ const MovieDetailsPage = () => {
   const [loading, setLoading] = useState(true);
   const location = useLocation();
   const navigate = useNavigate();
-  console.log(location);
+
+  const prevLocation = useRef(location.state?.from);
+
   const url = `https://api.themoviedb.org/3/movie/${movieId}`;
   const options = {
     headers: {
@@ -47,7 +48,9 @@ const MovieDetailsPage = () => {
   if (!movie) {
     return <p>Movie not found</p>;
   }
-  const goBack = () => navigate(location.state.from);
+
+  const goBack = () => navigate(prevLocation.current || "/movies");
+
   return (
     <div>
       <button onClick={goBack}>GO BACK</button>
@@ -62,7 +65,7 @@ const MovieDetailsPage = () => {
       />
       <p>
         <Link
-          state={{ from: location.state?.from || "/movies" }}
+          state={{ from: prevLocation.current || "/movies" }}
           to={`/movies/${movie.id}/cast`}
         >
           MovieCast
@@ -70,7 +73,7 @@ const MovieDetailsPage = () => {
       </p>
 
       <Link
-        state={{ from: location.state?.from || "/movies" }}
+        state={{ from: prevLocation.current || "/movies" }}
         to={`/movies/${movie.id}/reviews`}
       >
         MovieReviews
