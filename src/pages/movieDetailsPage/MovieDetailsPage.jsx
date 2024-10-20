@@ -53,7 +53,7 @@ const MovieDetailsPage = () => {
         <Link to={`/movies/${movie.id}/cast`}>MovieCast</Link>
       </p>
 
-      <Link to={`/movies/${movie.id}/rewiews`}>MovieReviews</Link>
+      <Link to={`/movies/${movie.id}/reviews`}>MovieReviews</Link>
       <Outlet />
     </div>
   );
