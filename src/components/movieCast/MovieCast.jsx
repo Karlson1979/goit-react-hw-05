@@ -42,10 +42,9 @@ const MovieCast = () => {
         {movieCast.map((actor) => (
           <li key={actor.id}>
             <div>
-              {/* Проверяем наличие фотографии актера */}
               {actor.profile_path ? (
                 <img
-                  src={`https://image.tmdb.org/t/p/w200${actor.profile_path}`} // Полный URL для изображения
+                  src={`https://image.tmdb.org/t/p/w200${actor.profile_path}`}
                   alt={actor.name}
                   width="100"
                 />

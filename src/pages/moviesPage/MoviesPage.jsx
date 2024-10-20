@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom"; // Импортируем Link
+import { Link } from "react-router-dom";
 
 const MoviesPage = () => {
   const [search, setSearch] = useState("");
@@ -70,12 +70,11 @@ const MoviesPage = () => {
             {movies.map((movie) => (
               <li key={movie.id}>
                 <h3>
-                  {/* Используем Link для создания ссылки на страницу с деталями фильма */}
                   <Link to={`/movies/${movie.id}`}>
                     {movie.title} ({movie.release_date?.split("-")[0]})
                   </Link>
                 </h3>
-                {/* Обертываем изображение в Link */}
+
                 {movie.poster_path ? (
                   <Link to={`/movies/${movie.id}`}>
                     <img
