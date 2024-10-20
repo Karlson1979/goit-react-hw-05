@@ -1,7 +1,10 @@
-import React from 'react'
+import React from "react";
 
-export const MovieCast = () => {
+const MovieCast = () => {
   return (
-    <div>MovieCast</div>
-  )
-}
+    <div>
+      <p>MovieCast</p>
+    </div>
+  );
+};
+export default MovieCast;
