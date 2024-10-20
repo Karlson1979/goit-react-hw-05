@@ -1,0 +1,10 @@
+{
+  "rewrites": [
+    {
+      "source": "/movies/:id*",
+      "destination": "/movies/[id].html"
+    }
+  ],
+  "cleanUrls": true,
+  "trailingSlash": false
+}
