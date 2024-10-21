@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useSearchParams } from "react-router-dom";
-import MovieList from "../../components/movieList/MovieList"; // Импортируем компонент MovieList
-
+import MovieList from "../../components/movieList/MovieList";
 const MoviesPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [search, setSearch] = useState(searchParams.get("search") || "");
@@ -10,7 +9,7 @@ const MoviesPage = () => {
   const [error, setError] = useState("");
 
   const API_KEY =
-    "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0YTE3ZTYwMWIzMWQwYzNmOTQ1Y2UxMzI4YTYzNTUyOCIsIm5iZiI6MTcyOTQyMzQ4Ni42NTcxNDIsInN1YiI6IjY2ZTE0ZjI3NDVlYzhhN2VkN2FmZTc1OSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.62P1pW3OXt-WSEdOJ36Crpaam1QRgPt89KYI-H2yqgg"; // Проверь, что ключ корректный
+    "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0YTE3ZTYwMWIzMWQwYzNmOTQ1Y2UxMzI4YTYzNTUyOCIsIm5iZiI6MTcyOTQyMzQ4Ni42NTcxNDIsInN1YiI6IjY2ZTE0ZjI3NDVlYzhhN2VkN2FmZTc1OSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.62P1pW3OXt-WSEdOJ36Crpaam1QRgPt89KYI-H2yqgg";
 
   const handleChange = (event) => {
     setSearch(event.target.value);
@@ -54,7 +53,7 @@ const MoviesPage = () => {
           setError("No results found.");
         }
       } catch (err) {
-        console.error("Error fetching movies:", err); // Выводим ошибку в консоль для отладки
+        console.error("Error fetching movies:", err);
         setError("Something went wrong. Please try again.");
       }
     };
@@ -77,7 +76,6 @@ const MoviesPage = () => {
 
       {error && <p style={{ color: "red" }}>{error}</p>}
 
-      {/* Передаем список фильмов как пропс в компонент MovieList */}
       <MovieList movies={movies} />
     </div>
   );
