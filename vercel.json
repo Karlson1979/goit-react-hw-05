@@ -1,10 +1,8 @@
 {
   "rewrites": [
     {
-      "source": "/movies/:id*",
-      "destination": "/movies/[id].html"
+      "source": "/(.*)",
+      "destination": "/"
     }
-  ],
-  "cleanUrls": true,
-  "trailingSlash": false
+  ]
 }
