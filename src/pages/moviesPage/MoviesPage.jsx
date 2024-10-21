@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Link, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
+import MovieList from "../../components/movieList/MovieList"; // Импортируем компонент MovieList
 
 const MoviesPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -9,7 +10,7 @@ const MoviesPage = () => {
   const [error, setError] = useState("");
 
   const API_KEY =
-    "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0YTE3ZTYwMWIzMWQwYzNmOTQ1Y2UxMzI4YTYzNTUyOCIsIm5iOiI2ZTE0ZjI3NDVlYzhhN2VkN2FmZTc1OSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.62P1pW3OXt-WSEdOJ36Crpaam1QRgPt89KYI-H2yqgg";
+    "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0YTE3ZTYwMWIzMWQwYzNmOTQ1Y2UxMzI4YTYzNTUyOCIsIm5iZiI6MTcyOTQyMzQ4Ni42NTcxNDIsInN1YiI6IjY2ZTE0ZjI3NDVlYzhhN2VkN2FmZTc1OSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.62P1pW3OXt-WSEdOJ36Crpaam1QRgPt89KYI-H2yqgg"; // Проверь, что ключ корректный
 
   const handleChange = (event) => {
     setSearch(event.target.value);
@@ -53,12 +54,14 @@ const MoviesPage = () => {
           setError("No results found.");
         }
       } catch (err) {
+        console.error("Error fetching movies:", err); // Выводим ошибку в консоль для отладки
         setError("Something went wrong. Please try again.");
       }
     };
 
     fetchMovies();
-  }, [searchParams]);
+  }, [searchParams, API_KEY]);
+
   return (
     <div>
       <form onSubmit={handleSearch}>
@@ -74,33 +77,8 @@ const MoviesPage = () => {
 
       {error && <p style={{ color: "red" }}>{error}</p>}
 
-      <div>
-        {movies.length > 0 && (
-          <ul>
-            {movies.map((movie) => (
-              <li key={movie.id}>
-                <h3>
-                  <Link to={`/movies/${movie.id}`}>
-                    {movie.title} ({movie.release_date?.split("-")[0]})
-                  </Link>
-                </h3>
-
-                {movie.poster_path ? (
-                  <Link to={`/movies/${movie.id}`}>
-                    <img
-                      src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
-                      alt={movie.title}
-                      width="100"
-                    />
-                  </Link>
-                ) : (
-                  <p>No poster available</p>
-                )}
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
+      {/* Передаем список фильмов как пропс в компонент MovieList */}
+      <MovieList movies={movies} />
     </div>
   );
 };
